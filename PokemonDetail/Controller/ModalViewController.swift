@@ -14,6 +14,7 @@ class ModalViewController :  UIViewController{
     var textReceived: String?
     var imageReceived: String?
     var descriptionReceived: String?
+    var habilityReceived: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,9 @@ class ModalViewController :  UIViewController{
         
         let nameLabel = UILabel()
         nameLabel.text = "Modal from main view"
-        nameLabel.textColor = .redmon
+        nameLabel.textColor = .bluemon
         nameLabel.textAlignment = .center
-        nameLabel.font = UIFont.systemFont(ofSize: 40, weight: .semibold)
+        nameLabel.font = UIFont.systemFont(ofSize: 40, weight: .bold)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(nameLabel)
         NSLayoutConstraint.activate([
@@ -58,9 +59,9 @@ class ModalViewController :  UIViewController{
         let descriptionLabel: UILabel = {
             let descriptionLabel = PaddingLabel(withInsets: 8, 8, 18, 18)
             descriptionLabel.text = "Description text"
-            descriptionLabel.textColor = .redmon
+            descriptionLabel.textColor = .bluemon
             descriptionLabel.textAlignment = .center
-            descriptionLabel.font = UIFont.systemFont(ofSize: 26, weight: UIFont.Weight.regular)
+            descriptionLabel.font = UIFont.systemFont(ofSize: 20, weight: UIFont.Weight.regular)
             descriptionLabel.layer.backgroundColor = UIColor.white.withAlphaComponent(0.9).cgColor
             descriptionLabel.layer.cornerRadius = 24
             descriptionLabel.layer.shadowColor = UIColor.black.cgColor
@@ -82,6 +83,28 @@ class ModalViewController :  UIViewController{
         if let description = descriptionReceived{
             descriptionLabel.text = description
         }
+        
+        // POKEMON HABILITY
+        
+        let habilityLabel = UILabel()
+        habilityLabel.text = "Modal from main view"
+        habilityLabel.textColor = .redmon
+        habilityLabel.textAlignment = .center
+        habilityLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        habilityLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(habilityLabel)
+        NSLayoutConstraint.activate([
+            habilityLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            habilityLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -90),
+        ])
+        
+        if let text3 = habilityReceived{
+            print(text3)
+            habilityLabel.text = "Habilidad: \(text3)"
+            
+        }
+        
+        
         
         // CLOSE MODAL BUTTON
         

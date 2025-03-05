@@ -66,10 +66,10 @@ extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
            let pokemon = dataManager.getPokemon(at: indexPath.row)
            
         
-        launchModal(name: pokemon!.name, image: pokemon!.image, description: dataManager.getDescription(forPokemonNamed: pokemon!.name)!)
+        launchModal(name: pokemon!.name, image: pokemon!.image, description: dataManager.getDescription(forPokemonNamed: pokemon!.name)!, hability: dataManager.getHability(forPokemonNamed: pokemon!.name)!)
     }
     
-    func launchModal( name: String, image: String, description: String ){
+    func launchModal( name: String, image: String, description: String, hability: String ){
 
         let modalViewController = ModalViewController()
         modalViewController.modalPresentationStyle = .fullScreen
@@ -77,16 +77,8 @@ extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
         modalViewController.textReceived = String(name)
         modalViewController.imageReceived = image
         modalViewController.descriptionReceived = description
+        modalViewController.habilityReceived = hability
         present(modalViewController, animated: true)
     }
-    
-    
-    
- 
-       
-       
-    
-    
- 
     
 }

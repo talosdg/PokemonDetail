@@ -17,14 +17,11 @@ class PokemonViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         pokemonTable.dataSource = self
         pokemonTable.delegate = self
         
         dataManager.fetch()
-
     }
-
 }
 
 extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
@@ -35,12 +32,9 @@ extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "pokemonCell", for: indexPath) as! PokemonCell
         if let pokemon = dataManager.getPokemon(at: indexPath.row){
-            
-           // print("")
             cell.pokemonImage.image = UIImage(named: pokemon.image)
             cell.pokemonLabel.text = pokemon.name
 
@@ -52,24 +46,21 @@ extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
             
             return cell
         }
-
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIImageView(image: UIImage(named: "PokemonHeader"))
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
            
-           tableView.deselectRow(at: indexPath, animated: true)
-           let pokemon = dataManager.getPokemon(at: indexPath.row)
-           
-        
-        launchModal(name: pokemon!.name, image: pokemon!.image, description: dataManager.getDescription(forPokemonNamed: pokemon!.name)!, hability: dataManager.getHability(forPokemonNamed: pokemon!.name)!)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let pokemon = dataManager.getPokemon(at: indexPath.row)
+
+        launchModal(name: pokemon!.name, image: pokemon!.image, description: dataManager.getDescription(forPokemonNamed: pokemon!.name)!, hability: dataManager.getHability(forPokemonNamed: pokemon!.name)!, movement: dataManager.getMovement(forPokemonNamed: pokemon!.name)!)
     }
     
-    func launchModal( name: String, image: String, description: String, hability: String ){
+    func launchModal( name: String, image: String, description: String, hability: String, movement: String ){
 
         let modalViewController = ModalViewController()
         modalViewController.modalPresentationStyle = .fullScreen
@@ -78,7 +69,11 @@ extension PokemonViewController : UITableViewDataSource, UITableViewDelegate {
         modalViewController.imageReceived = image
         modalViewController.descriptionReceived = description
         modalViewController.habilityReceived = hability
+        modalViewController.movementReceived = movement
+        
         present(modalViewController, animated: true)
     }
+    
+   
     
 }

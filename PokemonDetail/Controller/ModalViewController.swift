@@ -5,8 +5,6 @@
 //  Created by Edgar Vargas on 03/03/25.
 //
 
-
-
 import UIKit
 
 class ModalViewController :  UIViewController{
@@ -15,6 +13,7 @@ class ModalViewController :  UIViewController{
     var imageReceived: String?
     var descriptionReceived: String?
     var habilityReceived: String?
+    var movementReceived: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,6 @@ class ModalViewController :  UIViewController{
         ])
        
         // POKEMON NAME
-        
         let nameLabel = UILabel()
         nameLabel.text = "Modal from main view"
         nameLabel.textColor = .bluemon
@@ -50,9 +48,7 @@ class ModalViewController :  UIViewController{
         ])
         
         if let text = textReceived{
-            print(text)
             nameLabel.text = text
-            
         }
         
         // POKEMON DESCRIPTION
@@ -73,9 +69,9 @@ class ModalViewController :  UIViewController{
             view.addSubview(descriptionLabel)
             NSLayoutConstraint.activate([
                 descriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -40),
-                descriptionLabel.heightAnchor.constraint(equalTo: view.widthAnchor, constant: -200),
+                descriptionLabel.heightAnchor.constraint(equalTo: view.widthAnchor, constant: -220),
                 descriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                descriptionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 140)
+                descriptionLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 130)
             ])
             return descriptionLabel
         }()
@@ -88,7 +84,7 @@ class ModalViewController :  UIViewController{
         
         let habilityLabel = UILabel()
         habilityLabel.text = "Modal from main view"
-        habilityLabel.textColor = .redmon
+        habilityLabel.textColor = .bluemon
         habilityLabel.textAlignment = .center
         habilityLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
         habilityLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -99,12 +95,27 @@ class ModalViewController :  UIViewController{
         ])
         
         if let text3 = habilityReceived{
-            print(text3)
             habilityLabel.text = "Habilidad: \(text3)"
-            
+        }
+        // POKEMON MOVEMENT
+        
+        let movementLabel = UILabel()
+        movementLabel.text = "Modal from main view"
+        movementLabel.textColor = .redmon
+        movementLabel.textAlignment = .center
+        movementLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        movementLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(movementLabel)
+        NSLayoutConstraint.activate([
+            movementLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            movementLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -130),
+        ])
+        
+        if let text4 = movementReceived{
+            movementLabel.text = "Movimiento: \(text4)"
         }
         
-        
+
         
         // CLOSE MODAL BUTTON
         
@@ -112,7 +123,6 @@ class ModalViewController :  UIViewController{
             closeButton.setTitle("Cerrar", for: .normal)
             closeButton.backgroundColor = .redmon
             closeButton.addTarget(self, action: #selector(closeModal), for: .touchUpInside)
-        
             var configuration = UIButton.Configuration.filled()
             configuration.title = title
             configuration.baseBackgroundColor = .redmon
